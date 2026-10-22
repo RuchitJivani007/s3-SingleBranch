@@ -2,16 +2,81 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My First Web Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Card Component</title>
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --accent-color: #007bff;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #18191a;
+            --card-bg: #242526;
+            --text-color: #e4e6eb;
+            --accent-color: #3992ff;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.3s;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 350px;
+            transition: background-color 0.3s;
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Hello, World!</h1>
-    <p>This is a simple paragraph of text on my new website.</p>
-    
-    <!-- This is a comment, it won't show up on the page -->
-    <a href="https://www.w3schools.com" target="_blank">Visit W3Schools for HTML Tutorials</a>
+    <div class="card">
+        <h2>Interactive Card</h2>
+        <p>This layout uses CSS custom variables to seamlessly change themes with JavaScript.</p>
+        <button id="themeToggle">Switch Theme</button>
+    </div>
+
+    <script>
+        const button = document.getElementById('themeToggle');
+        button.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        });
+    </script>
 
 </body>
 </html>
-
